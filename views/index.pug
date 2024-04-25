@@ -1,0 +1,55 @@
+extends layout
+
+block content
+  // use include for each role
+  if !user
+    h1 Greetings Visitor!
+    p Welcome to  the Clubhouse! Check out our members stories!
+    
+    div
+    each post in Posts 
+     div
+      h3 title: #{post.title}
+      p= post.message
+
+
+
+  else if user && role === 'user'
+    h1 Hello #{username},
+    p Welcome to  the Clubhouse! Post yer story now!
+    a(href="/user/clubhouse")  Join the club now!
+      
+    div
+    each post in Posts 
+     div
+       h3 title: #{post.title}
+       p= post.message
+    
+
+
+    include example.pug
+  
+  else if user && role === 'member'
+   h1 Hello co-member #{username},
+    p Welcome to  the Club! Post yer story now!
+      
+    div
+    each post in Posts 
+      div
+          h3 title: #{post.title}
+          p= post.message
+          span.author author: #{post.author ? post.author.username : ''}
+
+
+  else if user && role === 'admin'
+   h1 Hello  Admin #{username},
+    p Welcome to  the Club! Post yer story now!
+
+        
+    div
+    each post in Posts 
+      div
+          h1= post.title
+          p=  post.message
+
+    

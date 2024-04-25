@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    h1 Be Part Of The Clubhouse 
+
+
+    if !user
+      form(action="" method="POST") 
+          div.form_controls
+              label(for="username") Username:
+              input(type="text" name="username") 
+              span.errors= errors ? errors[0].username : ''
+              
+          div.form_controls
+              label(for="password") Password:
+              input(type="password" name="password") 
+              span.errors= errors ? errors[1].password : ''
+      
+          div.form_controls
+              button(type="submit") Sign Up
+     
+      
+    else 
+      h1 You already signed up!

@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+
+    h1 Share your story!
+
+    form(action="" method="post")
+
+        label(for="title") title: 
+        span.errors= errors && errors[0].title 
+        input(type="text" name="title")
+
+
+        input(type="textarea" name="message" placeholder="I saw my crush today!!") 
+    
+        div
+            button(type="submit") Post
+

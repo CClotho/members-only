@@ -1,0 +1,10 @@
+extends layout 
+
+block content
+    h1 1 SANDWICH A DAY KEEPS THE CLUBHATErs AWAY
+
+    form(action="" method="post")
+        label(for="club_password") Clubhouse secret password:
+        input(type="password" name="club_password")
+        span.errors= errors ? errors[0].club_password : ''
+        button(type="submit") Enter

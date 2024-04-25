@@ -1,0 +1,22 @@
+header#header
+    div#head_container
+       div#sub_container
+            h1 Clubhouse
+            div.list
+                if !user
+                    div
+                        a(href="/login") Login
+                    div 
+                        a(href="sign-up") Sign Up
+                else 
+                    div
+                        form(action="/logout" method="post")
+                            button(type="submit") Logout
+
+                    div 
+                        a(href="/user/post") Create a new post       
+                        
+                
+            
+               
+    
