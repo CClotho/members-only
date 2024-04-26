@@ -14,12 +14,19 @@ const User = require("../models/User");
 
 
 exports.getLoginForm = (req, res,next) => {
+console.log(req.session)
+  console.log("The error message from req.session.messages", req.session.messages);
+    if(req.session.messages) {
+      errors = "Incorrect username or password"
+    }
     res.render('login-form')
 }
 
 
 exports.Login = passport.authenticate('local', {
-    successRedirect: "/"
+  failureRedirect: '/login',
+  successRedirect: "/",
+  failureMessage:true, 
 })
 
 exports.getMessages = asyncHandler(async(req, res, next) => {
@@ -74,7 +81,7 @@ exports.SignUp = asyncHandler(async (req, res, next) => {
       if(err) {
         return next(error);
       }
-      res.clearCookie('connect.sid', {httpOnly: true, path: "/"}).redirect('/');
+    return  res.clearCookie('connect.sid', {httpOnly: true, path: "/"}).redirect('/');
   
   
     })

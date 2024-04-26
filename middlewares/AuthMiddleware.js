@@ -10,12 +10,15 @@ const bcrypt= require('bcryptjs');
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     try {
+      console.log("the password", password)
       
       const account = await Account.findOne({ username: username });
-      const match = await bcrypt.compare(password, account.password);
+      
       if (!account) {
         return done(null, false, { message: "Incorrect username" });
       };
+
+      const match = await bcrypt.compare(password, account.password);
       if (!match) {
         // passwords do not match!
         return done(null, false, { message: "Incorrect password" })
